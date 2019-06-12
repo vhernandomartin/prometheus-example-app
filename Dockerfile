@@ -1,4 +1,4 @@
-FROM quay.io/prometheus/busybox:latest
+FROM golang:1.12
 
 ADD prometheus-example-app /bin/prometheus-example-app
 
