@@ -9,6 +9,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/prometheus/client_golang/prometheus"
+        "github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func main() {
@@ -21,7 +22,7 @@ func main() {
 
 	router := mux.NewRouter()
 	router.Handle("/sayhello/{name}", Sayhello(histogram))
-	router.Handle("/metrics", prometheus.Handler()) //Metrics endpoint for scrapping
+	router.Handle("/metrics", promhttp.Handler()) //Metrics endpoint for scrapping
 	router.Handle("/{anything}", Sayhello(histogram))
 	router.Handle("/", Sayhello(histogram))
 	//Registering the defined metric with Prometheus
